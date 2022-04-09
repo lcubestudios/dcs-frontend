@@ -10,7 +10,7 @@ pipeline{
         //Enviroment Varibles below:
         
         //ENV_NAME = 'value'
-				VUE_APP_ROOT='/dcs-frontend/dist/'
+				VUE_APP_ROOT='/dcs-frontend/'
 				VUE_APP_TITLE='Decentralized Cloud Storage | powered by LCube Studios'
 
         //SECRET ENV will need to be added to Jenkins to be able to use them
