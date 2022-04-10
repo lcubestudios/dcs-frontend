@@ -1,6 +1,6 @@
 <template>
 	<button
-		v-if="type === 'icon'"
+		v-if="icon"
 		class="btn btn-icon shadow-outer content-center"
 		:class="colors"
 		:style="{
@@ -9,11 +9,11 @@
 			'border-radius': rounded + 'px'
 		}"
 	>
-		<mdicon :name="name" :size="icon_size" />
+		<mdicon :name="icon" :size="icon_size" />
 	</button>
 	<button 
 		v-else
-		class="btn btn-button p-4 rounded-default shadow-outer"
+		class="btn btn-button p-4 shadow-outer content-center rounded-default"
 		:class="colors"
 	>
 		<slot>
@@ -27,23 +27,31 @@ import { computed, toRefs, defineProps } from 'vue'
 const props = defineProps({
 	type: {
 		type: String,
-		default: 'button'
+		default: 'primary'
 	},
 	size: {
 		type: Number,
 		default: 50
 	},
-	name: {
+	icon: {
 		type: String,
 		default: null
 	},
 	bgColor: {
 		type: String,
-		default: 'btn-bg-001'
+		default: null
 	},
 	textColor: {
 		type: String,
-		default: 'btn-text-001'
+		default: null
+	},
+	bgHoverColor: {
+		type: String,
+		default: null
+	},
+	textHoverColor: {
+		type: String,
+		default: null
 	},
 	hover: {
 		type: Boolean,
@@ -54,9 +62,11 @@ const props = defineProps({
 const {
 	type,
 	size,
-	name,
+	icon,
 	bgColor,
 	textColor,
+	bgHoverColor,
+	textHoverColor,
 	hover
 } = toRefs(props)
 
@@ -69,12 +79,29 @@ const rounded = computed(() => {
 })
 
 const colors = computed(() => {
-	console.log(hover.value)
-	return `bg-${ bgColor.value } 
-		text-${ textColor.value } 
+	const bg = bgColor.value ||
+		type.value === 'secondary'
+		? 'btn-bg-002'
+		: 'btn-bg-001'
+	const text = textColor.value ||
+		type.value === 'secondary'
+		? 'btn-text-002'
+		: 'btn-text-001'
+	/* Hover */
+	const bgHover = bgHoverColor.value || textColor.value ||
+		type.value === 'secondary'
+		? 'btn-text-002'
+		: 'btn-text-001'
+	const textHover = textHoverColor.value || bgColor.value ||
+		type.value === 'secondary'
+		? 'btn-bg-002'
+		: 'btn-bg-001'
+
+	return `bg-${ bg } 
+		text-${ text } 
 		${ 
 			hover.value 
-			? `hover:bg-${ textColor.value } hover:text-${ bgColor.value }` 
+			? `hover:bg-${ bgHover } hover:text-${ textHover }` 
 			: 'cursor-default' 
 		}`
 })

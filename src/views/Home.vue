@@ -1,6 +1,6 @@
 <template>
-	<div id="dashboard" class="container h-screen overflow-hidden grid grid-cols-12 grid-row-min gap-5">
-		<header class="bg-bg-002 col-span-12 p-5 rounded-default shadow-outer">
+	<div id="dashboard" class="container h-full overflow-hidden grid grid-cols-12 grid-row-min gap-5">
+		<header class="bg-bg-002 col-span-12 px-5 py-4 rounded-default shadow-outer">
 			<div class="w-full flex flex-row flex-nowrap justify-between items-center">
 				<div class="flex flex-row flex-nowrap items-center">
 					<mdicon class="text-text-002 mr-5" name="cloud" :size="50" />
@@ -15,8 +15,8 @@
 							</span>
 						</div>
 						<UiButton 
-							type="icon" 
-							name="account-outline" 
+							type="secondary" 
+							icon="account-outline" 
 							:size="50" 
 							:hover="false"
 						/>
@@ -37,24 +37,24 @@
 				<div>
 					<UiButton
 						class="mr-3"
-						type="icon" 
-						name="upload" 
+						type="secondary" 
+						icon="upload" 
 						:size="35" 
 						bg-color="btn-bg-002" 
 						text-color="btn-text-002" 
 						@click="selectFile"
 					/>
 					<UiButton
-						type="icon" 
-						name="download" 
+						type="secondary" 
+						icon="download" 
 						:size="35" 
 						bg-color="btn-bg-002" 
 						text-color="btn-text-002" 
 					/>
 				</div>
 			</header>
-			<div class="flex-1w-full h-full bg-bg-003 shadow-inner">
-				<div class="px-16 py-11">
+			<div class="flex-1w-full h-full bg-bg-003 shadow-inner overflow-x-hidden overflow-y-auto">
+				<div class="hidden px-16 py-11">
 					<header class="title-text text-small pb-3 border-b border-outershadow">
 						<span class="text-secondary">Name</span>
 					</header>
@@ -77,13 +77,15 @@
 						<span>Lorem Ipsum</span>
 					</section>
 				</div>
-				<div class="hidden w-full h-full content-center">
+				<div class="w-full h-full content-center">
 					<div class="text-center">
 						<h3 class="text-body-2 md:text-h3 title-text mb-3">You don't have any files yet</h3>
 						<p class="text-small md:text-body mb-6">
 							Add your first file by<br>clicking the upload button below
 						</p>
-						<UiButton @click="selectFile">Upload</UiButton>
+						<UiButton 
+							@click="selectFile"
+						>Upload</UiButton>
 					</div>
 				</div>
 			</div>

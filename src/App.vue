@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main id="view">
 		<UiLoader v-if="loading" :progress="loaded" />
 		<router-view v-else />
 	</main>
