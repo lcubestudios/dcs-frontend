@@ -7,7 +7,6 @@ import store from "@/store/index.js"
 import mdiVue from 'mdi-vue/v3'
 import * as mdijs from '@mdi/js'
 
-import UiIcon from './components/ui/Icon.vue'
 import UiButton from './components/ui/Button.vue'
 // import UiHeader from './components/ui/Header.vue'
 // import UiContent from './components/ui/Content.vue'
@@ -22,7 +21,6 @@ createApp(App)
 	.use(mdiVue, {
 		icons: mdijs
 	})
-	.component('UiIcon', UiIcon)
 	.component('UiButton', UiButton)
 	// .component('UiHeader', UiHeader)
 	// .component('UiContent', UiContent)

@@ -1,51 +1,59 @@
 <template>
 	<div id="dashboard" class="container h-screen overflow-hidden grid grid-cols-12 grid-row-min gap-5">
-		<header class="bg-gray-001 col-span-12 p-5 rounded-default shadow-outer">
+		<header class="bg-bg-002 col-span-12 p-5 rounded-default shadow-outer">
 			<div class="w-full flex flex-row flex-nowrap justify-between items-center">
 				<div class="flex flex-row flex-nowrap items-center">
-					<mdicon class="text-primary mr-5" name="cloud" :size="50" />
-					<h1 class="hidden lg:block text-primary text-h4">Decentralized Cloud Storage</h1>
+					<mdicon class="text-text-002 mr-5" name="cloud" :size="50" />
+					<h1 class="hidden lg:block title-text text-h4">Decentralized Cloud Storage</h1>
 				</div>
 				<div class="flex flex-row flex-nowrap">
 					<div class="flex flex-row flex-nowrap">
 						<div class="flex flex-row flex-nowrap items-center mr-5 text-right">
-							<h2 class="text-h6 text-primary">Lorem Ipsum</h2>
+							<h2 class="text-h6 title-text">Welcome!</h2>
 							<span class="hidden text-body-2 leading-none">
 								<span class="inline-block w-2 h-2 bg-secondary rounded-full mr-1"></span> Online
 							</span>
 						</div>
-						<button>
-							<UiIcon name="account-outline" :size="50" bg-color="primary" text-color="white"/>
-						</button>
+						<UiButton 
+							type="icon" 
+							name="account-outline" 
+							:size="50" 
+							:hover="false"
+						/>
 					</div>
 				</div>
 			</div>
 		</header>
-		<section class="flex flex-col bg-gray-001 col-span-12 p-5 rounded-default shadow-outer">
+		<section class="bg-bg-002 flex flex-col col-span-12 p-5 rounded-default shadow-outer">
 			<input 
 				class="hidden"
 				type="file"
 				ref="fileUpload"
-				@change="onFilePicked"
+				@change="uploadFile"
 			>
 			<header class="flex flex-row flex-nowrap justify-between mb-5">
 				<div>
 				</div>
 				<div>
-					<button @click="$refs.fileUpload.click()">
-						<UiIcon name="upload" :size="50"/>
+					<button @click="selectFile">
+						<UiButton
+							type="icon" 
+							name="upload" 
+							:size="50" 
+							bg-color="btn-bg-002" 
+							text-color="btn-text-002" 
+						/>
 					</button>
 				</div>
 			</header>
-			<div class="flex-1w-full h-full bg-white shadow-inner">
+			<div class="flex-1w-full h-full bg-bg-003 shadow-inner">
 				<div class="w-full h-full content-center">
 					<div class="text-center">
-						<h3 class="text-body-2 md:text-h3 text-primary mb-3">You don't have any files yet</h3>
+						<h3 class="text-body-2 md:text-h3 title-text mb-3">You don't have any files yet</h3>
 						<p class="text-small md:text-body mb-6">
-							Add your first file by dragging it here or<br>
-							use the upload new file button on the bottom
+							Add your first file by<br>clicking the upload button below
 						</p>
-						<UiButton bg-color="primary" text-color="white" @click="$refs.fileUpload.click()">Upload</UiButton>
+						<UiButton @click="selectFile">Upload</UiButton>
 					</div>
 				</div>
 			</div>
@@ -54,6 +62,26 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+
+const fileUpload = ref(null)
+
+const selectFile = () => {
+	fileUpload.value.click()
+}
+
+const uploadFile = () => {
+  const files = event.target.files
+  let filename = files[0].name
+  const fileReader = new FileReader()
+  // fileReader.addEventListener('load', () => {
+  //   this.imageUrl = fileReader.result
+  // })
+  // fileReader.readAsDataURL(files[0])
+  // this.image = files[0]
+	console.log(fileReader.result)
+	console.log(filename)
+}
 </script>
 
 <style scoped>
