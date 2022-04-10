@@ -1,0 +1,21 @@
+
+@import './_config.css';
+@import './_global.css';
+
+@import './_fontface.css';
+@import './_config.css';
+@import './_global.css';
+
+.container {
+	margin: 0 auto !important;
+	padding: 30px !important;
+	width: 100% !important;
+	max-width: 1920px !important;
+	overflow: hidden !important;
+}
+
+.content-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
