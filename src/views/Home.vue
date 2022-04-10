@@ -35,19 +35,49 @@
 				<div>
 				</div>
 				<div>
-					<button @click="selectFile">
-						<UiButton
-							type="icon" 
-							name="upload" 
-							:size="50" 
-							bg-color="btn-bg-002" 
-							text-color="btn-text-002" 
-						/>
-					</button>
+					<UiButton
+						class="mr-3"
+						type="icon" 
+						name="upload" 
+						:size="35" 
+						bg-color="btn-bg-002" 
+						text-color="btn-text-002" 
+						@click="selectFile"
+					/>
+					<UiButton
+						type="icon" 
+						name="download" 
+						:size="35" 
+						bg-color="btn-bg-002" 
+						text-color="btn-text-002" 
+					/>
 				</div>
 			</header>
 			<div class="flex-1w-full h-full bg-bg-003 shadow-inner">
-				<div class="w-full h-full content-center">
+				<div class="px-16 py-11">
+					<header class="title-text text-small pb-3 border-b border-outershadow">
+						<span class="text-secondary">Name</span>
+					</header>
+					<section class="title-text text-body-2 py-8 border-b border-outershadow">
+						<span>Lorem Ipsum</span>
+					</section>
+					<section class="title-text text-body-2 py-8 border-b border-outershadow">
+						<span>Lorem Ipsum</span>
+					</section>
+					<section class="title-text text-body-2 py-8 border-b border-outershadow">
+						<span>Lorem Ipsum</span>
+					</section>
+					<section class="title-text text-body-2 py-8 border-b border-outershadow">
+						<span>Lorem Ipsum</span>
+					</section>
+					<section class="title-text text-body-2 py-8 border-b border-outershadow">
+						<span>Lorem Ipsum</span>
+					</section>
+					<section class="title-text text-body-2 py-8 border-b border-outershadow">
+						<span>Lorem Ipsum</span>
+					</section>
+				</div>
+				<div class="hidden w-full h-full content-center">
 					<div class="text-center">
 						<h3 class="text-body-2 md:text-h3 title-text mb-3">You don't have any files yet</h3>
 						<p class="text-small md:text-body mb-6">

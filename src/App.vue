@@ -1,11 +1,10 @@
 <template>
   <main>
-		<router-view />
+		<UiLoader v-if="loading" :progress="loaded" />
+		<router-view v-else />
 	</main>
 </template>
 
-<script>
-export default {
-  name: 'App',
-}
+<script setup>
+const loading = false;
 </script>
