@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // import store from '../store/index.js';
 import Home from '@/views/Home.vue'
-import Auth from '@/views/Auth.vue'
+// import Auth from '@/views/Auth.vue'
 
 const routes = [
 	{
@@ -13,11 +13,6 @@ const routes = [
 		}
 	},
 	{
-		path: '/auth',
-		name: 'Auth',
-		component: Auth
-	},
-	{
 		path: '/:catchAll(.*)',
 		redirect: '/',
 	}
@@ -27,15 +22,5 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-
-// router.beforeEach((to, _, next) => {
-// 	if (to.matched.some(route => route.meta.authRequired)) {
-// 		if (!store.getters.isAuthenticated) next({ path: '/auth' })
-// 		else next()
-// 	} 
-// 	else {
-// 		next()
-// 	}
-// })
 
 export default router

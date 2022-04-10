@@ -1,20 +1,35 @@
 import { createStore } from 'vuex' 
+import axios from 'axios'
 
 const state = () => {
 	return {
-		token: null
+		files: []
 	}
 }
 
 const mutations = {
+	setFiles(state, val) {
+		state.files = val
+	}
 }
 
 const actions = {
+	async getFiles({ commit }) {
+		const list = await axios.get('https://api.lcubestudios.io/master/dcs-api/trigger.php')
+			.then(res => {
+				return res.data
+			})
+
+		commit('setFiles', list)
+	},
+	clearFiles({ commit }) {
+		commit('setFiles', [])
+	}
 }
 
 const getters = {
-	isAuth(state) {
-		return !!state.token
+	files(state) {
+		return state.files
 	}
 }
 
