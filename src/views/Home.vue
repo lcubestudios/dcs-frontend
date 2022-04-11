@@ -1,6 +1,6 @@
 <template>
-	<div id="dashboard" class="container h-full overflow-hidden grid grid-cols-12 grid-row-min gap-5">
-		<header class="bg-bg-002 col-span-12 px-5 py-4 rounded-default shadow-outer">
+	<div id="dashboard" class="container h-full overflow-hidden flex flex-col">
+		<header class="bg-bg-002 col-span-12 mb-5 px-5 py-4 rounded-default shadow-outer">
 			<div class="w-full flex flex-row flex-nowrap justify-between items-center">
 				<div class="flex flex-row flex-nowrap items-center">
 					<mdicon class="text-text-002 mr-5" name="cloud" :size="50" />
@@ -24,7 +24,7 @@
 				</div>
 			</div>
 		</header>
-		<section class="bg-bg-002 flex flex-col col-span-12 p-5 rounded-default shadow-outer">
+		<section class="bg-bg-002 flex-1 flex flex-col col-span-12 p-5 rounded-default shadow-outer overflow-hidden">
 			<input 
 				class="hidden"
 				type="file"
@@ -61,8 +61,8 @@
 					/>
 				</div>
 			</header>
-			<div class="flex-1w-full h-full bg-bg-003 shadow-inner overflow-x-hidden overflow-y-auto">
-				<div v-if="files.length > 0" class="px-16 py-11">
+			<div class="flex-1 w-full h-full bg-bg-003 shadow-inner overflow-x-hidden overflow-y-auto">
+				<div v-if="files.length > 0" class="px-7 py-5 md:px-11 md:py-7 lg:px-16 lg:py-11">
 					<header class="title-text text-small pb-3 border-b border-outershadow">
 						<span class="text-secondary">Name</span>
 					</header>
@@ -121,8 +121,8 @@ const getFiles = async () => {
 </script>
 
 <style scoped>
-#dashboard {
+/* #dashboard {
   align-content: stretch;
   grid-template-rows: min-content;
-}
+} */
 </style>
