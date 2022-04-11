@@ -63,7 +63,7 @@ pipeline{
 		    sh 'ipfs-upload-client --id ${IPFSUSERNAME} --secret ${IPFSPASSWORD} ${JK_WORKSPACE}/${REPO_NAME}_${BRANCH_NAME}/dist'
 		} 
 		sh 'npm install -g npm ipfs-deploy'
-		sh 'cd ${JK_WORKSPACE}/${REPO_NAME}_${BRANCH_NAME}/ && ipd -O -C -p infura -d cloudflare'
+		sh 'cd ${JK_WORKSPACE}/${REPO_NAME}_${BRANCH_NAME}/dist && ipd -O -C -p infura -d cloudflare'
 		slackSend color: "good", message: "Success deploying master pipeline."
 	    }
 	}
