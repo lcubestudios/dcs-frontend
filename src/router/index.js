@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // import store from '../store/index.js';
 import Home from '@/views/Home.vue'
-import { processExpression } from '@vue/compiler-core';
 // import Auth from '@/views/Auth.vue'
 
 const routes = [
