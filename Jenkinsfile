@@ -20,7 +20,7 @@ pipeline{
         IPFS_DEPLOY_CLOUDFLARE__API_KEY = credentials('cloudflare-api')
         IPFS_DEPLOY_CLOUDFLARE__API_EMAIL = credentials('cloudflare-email')
         IPFS_DEPLOY_CLOUDFLARE__ZONE='lcubestudios.io'
-	IPFS_DEPLOY_CLOUDFLARE__RECORD='${REPO_NAME}'
+	IPFS_DEPLOY_CLOUDFLARE__RECORD='dcs'
         
         //Do not modify
         APACHE_DIR = '/var/www/html'
