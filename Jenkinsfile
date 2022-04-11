@@ -10,13 +10,17 @@ pipeline{
         //Enviroment Varibles below:
         
         //ENV_NAME = 'value'
-				BASE_URL='/dcs-frontend/'
-				SITE_TITLE='Decentralized Cloud Storage | powered by LCube Studios'
+	BASE_URL='/dcs-frontend/'
+	SITE_TITLE='Decentralized Cloud Storage | powered by LCube Studios'
 
-        //SECRET ENV will need to be added to Jenkins to be able to use them
-        
-        //GOOGLE_ANALYTICS_TRACKING_ID = credentials('google-analytics') - Sample
-        //ENV_NAME = credentials('jenkins_env_id')
+        //SECRET ENV 
+	//ENV_NAME = credentials('jenkins_env_id')
+	
+	//WEB 3.0
+        IPFS_DEPLOY_CLOUDFLARE__API_KEY = credentials('cloudflare-api')
+        IPFS_DEPLOY_CLOUDFLARE__API_EMAIL = credentials('cloudflare-email')
+        IPFS_DEPLOY_CLOUDFLARE__ZONE='lcubestudios.io'
+	IPFS_DEPLOY_CLOUDFLARE__RECORD='dcs'
         
         //Do not modify
         APACHE_DIR = '/var/www/html'
@@ -34,23 +38,40 @@ pipeline{
                 slackSend color: "good", message: "Success building the application."
             }
         }
-        // stage("scan") {
-        //     steps {
-        //         echo 'Scanning code for vulnerabilities.'
-        //         slackSend color: "warning", message: "Scanning code for vulnerabilities on ${REPO_NAME}/${BRANCH_NAME}..."
-        //         snykSecurity(
-        //             snykInstallation: 'snyk-latest',
-        //             snykTokenId: "${SNYK_ID}",
-        //             failOnIssues: "false",
-        //         )
-        //         slackSend color: "good", message: "Success scanning the code."
-        //     }
-        // }
+        stage("scan") {
+            steps {
+                echo 'Scanning code for vulnerabilities.'
+                slackSend color: "warning", message: "Scanning code for vulnerabilities on ${REPO_NAME}/${BRANCH_NAME}..."
+                snykSecurity(
+                    snykInstallation: 'snyk-latest',
+                    snykTokenId: "${SNYK_ID}",
+                    failOnIssues: "false",
+                )
+                slackSend color: "good", message: "Success scanning the code."
+            }
+        }
+	 stage("deploy") {
+	    when{
+		expression{
+		    BRANCH_NAME == "master"
+		}
+	    }
+	    steps {
+		echo 'deploying the application.'
+		slackSend color: "warning", message: "Deploying the application..."
+		withCredentials([usernamePassword(credentialsId: 'infura-token', usernameVariable: 'IPFSUSERNAME', passwordVariable: 'IPFSPASSWORD')]) {
+		    sh 'ipfs-upload-client --id ${IPFSUSERNAME} --secret ${IPFSPASSWORD} ${JK_WORKSPACE}/${REPO_NAME}_${BRANCH_NAME}/dist'
+		} 
+		sh 'npm install -g npm ipfs-deploy'
+		sh 'cd ${JK_WORKSPACE}/${REPO_NAME}_${BRANCH_NAME} && ipd -O -C -p infura -d cloudflare dist'
+		slackSend color: "good", message: "Success deploying master pipeline."
+	    }
+	}
     }
     post {
         success {
             echo 'The pipeline completed successfully.'
-            slackSend color: "good", message: "The pipeline completed successfully. https://${BRANCH_NAME}.lcubestudios.io/${REPO_NAME}/dist/"
+            slackSend color: "good", message: "The pipeline completed successfully. https://${BRANCH_NAME}.lcubestudios.io/${REPO_NAME}/"
         }
         failure {
             echo 'pipeline failed, at least one step failed'
@@ -58,4 +79,3 @@ pipeline{
         }
     }      
 }
-
