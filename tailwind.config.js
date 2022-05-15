@@ -79,6 +79,10 @@ module.exports = {
 				'btn-text-001': 'var(--primary-button-textcolor)',
 				'btn-bg-002': 'var(--secondary-button-bgcolor)',
 				'btn-text-002': 'var(--secondary-button-textcolor)',
+				'btn-bg-disabled': 'var(--disabled-button-bgcolor)',
+				'btn-text-disabled': 'var(--disabled-button-textcolor)',
+				'loader-bg': 'var(--loader-bg)',
+				'loader-fg': 'var(--loader-fg)',
 			},
 			boxShadow: {
 				'outer': '0px 3px 6px var(--color-outershadow)',

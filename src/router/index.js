@@ -5,7 +5,7 @@ import Home from '@/views/Home.vue'
 
 const routes = [
 	{
-		path: process.env.BASE_URL,
+		path: process.env.VUE_APP_BASE_URL,
 		name: 'Home',
 		component: Home,
 		meta: {
@@ -14,7 +14,7 @@ const routes = [
 	},
 	{
 		path: '/:catchAll(.*)',
-		redirect: process.env.BASE_URL,
+		redirect: process.env.VUE_APP_BASE_URL,
 	}
 ]
 

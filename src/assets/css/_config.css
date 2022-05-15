@@ -1,5 +1,8 @@
 
 :root {
+	--color-white: #F8F8F8;
+	--color-gray-001: #F2F2F2;
+	--color-gray-002: #E8E8E8;
 	--color-black-001: #060C0C;
 	--color-black-002: #091312;
 	--color-black-003: #0C1918;
@@ -7,9 +10,6 @@
 	--color-secondary: #387368;
 	--color-tertiary: #7CA69E;
 	--color-accent: #9FBFB8;
-	--color-gray-002: #E8E8E8;
-	--color-gray-001: #F2F2F2;
-	--color-white: #F8F8F8;
 
 	--font-family: 'ff-real-headline-pro', 'Helvetica', Arial, sans-serif;
 
@@ -72,10 +72,15 @@
 	--primary-button-textcolor: var(--color-white);
 	--secondary-button-bgcolor: var(--color-white);
 	--secondary-button-textcolor: var(--color-primary);
+	--disabled-button-bgcolor: var(--color-gray-002);
+	--disabled-button-textcolor: var(--color-white);
+	/* loader */
+	--loader-bg: var(--color-gray-002);
+	--loader-fg: var(--color-tertiary);
 }
 
 /* Dark Mode */
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
 :root {
 	/* Theme */
 	/* shadows */
@@ -94,5 +99,10 @@
 	--primary-button-textcolor: var(--color-white);
 	--secondary-button-bgcolor: var(--color-primary);
 	--secondary-button-textcolor: var(--color-white);
+	--disabled-button-bgcolor: var(--color-gray-002);
+	--disabled-button-textcolor: var(--color-white);
+	/* loader */
+	--loader-bg: var(--color-gray-002);
+	--loader-fg: var(--color-tertiary);
 }
 }

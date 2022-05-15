@@ -79,21 +79,29 @@ const rounded = computed(() => {
 })
 
 const colors = computed(() => {
-	const bg = bgColor.value ||
-		type.value === 'secondary'
+	const bg = bgColor.value
+		? bgColor.value
+		: type.value === 'secondary'
 		? 'btn-bg-002'
 		: 'btn-bg-001'
-	const text = textColor.value ||
-		type.value === 'secondary'
+	const text = textColor.value
+		? textColor.value
+		: type.value === 'secondary'
 		? 'btn-text-002'
 		: 'btn-text-001'
 	/* Hover */
-	const bgHover = bgHoverColor.value || textColor.value ||
-		type.value === 'secondary'
+	const bgHover = bgHoverColor.value
+		? bgHoverColor.value
+		: textColor.value
+		? textColor.value
+		: type.value === 'secondary'
 		? 'btn-text-002'
 		: 'btn-text-001'
-	const textHover = textHoverColor.value || bgColor.value ||
-		type.value === 'secondary'
+	const textHover = textHoverColor.value
+		? textHoverColor.value
+		: bgColor.value
+		? bgColor.value
+		: type.value === 'secondary'
 		? 'btn-bg-002'
 		: 'btn-bg-001'
 

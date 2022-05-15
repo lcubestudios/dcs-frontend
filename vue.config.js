@@ -1,11 +1,11 @@
 module.exports = 
 {
-  publicPath: process.env.BASE_URL,
+  publicPath: process.env.VUE_APP_BASE_URL,
 	chainWebpack: config => {
 		config
 		.plugin('html')
 		.tap(args => {
-			args[0].title = process.env.SITE_TITLE;
+			args[0].title = process.env.VUE_APP_SITE_TITLE;
 			return args;
 		})
 	}

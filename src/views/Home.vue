@@ -35,72 +35,29 @@
 				<div>
 				</div>
 				<div>
-					<!-- <UiButton
-						class="mr-3"
-						type="secondary" 
-						icon="upload" 
-						:size="35" 
-						bg-color="btn-bg-002" 
-						text-color="btn-text-002" 
-						@click="selectFile"
-					/>
-					<UiButton
-						type="secondary" 
-						icon="download" 
-						:size="35" 
-						bg-color="btn-bg-002" 
-						text-color="btn-text-002" 
-					/> -->
-					<UiButton
-						type="secondary" 
-						icon="autorenew" 
-						:size="35" 
-						bg-color="btn-bg-002" 
-						text-color="btn-text-002" 
-						@click="getFiles"
-					/>
+					<FileToolbar />
 				</div>
 			</header>
-			<div class="flex-1 w-full h-full bg-bg-003 shadow-inner overflow-x-hidden overflow-y-auto">
-				<div v-if="files.length > 0" class="px-7 py-5 md:px-11 md:py-7 lg:px-16 lg:py-11">
-					<header class="title-text text-small pb-3 border-b border-outershadow">
-						<span class="text-secondary">Name</span>
-					</header>
-					<section 
-						v-for="(file, ndx) in files"
-						:key="ndx"
-						class="title-text text-body-2 py-8 border-b border-outershadow">
-						<span>{{ file.key }}</span>
-					</section>
-				</div>
-				<div v-else class="w-full h-full content-center">
-					<div class="text-center">
-						<h3 class="text-body-2 md:text-h3 title-text mb-3">Hey there!</h3>
-						<p class="text-small md:text-body mb-6">
-							Click the button below to view files
-						</p>
-						<UiButton 
-							@click="getFiles"
-						>View Files</UiButton>
-					</div>
-				</div>
+			<div class="flex-1 w-full h-full bg-bg-003 shadow-inner overflow-hidden">
+				<FileList />
 			</div>
 		</section>
 	</div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { onMounted } from 'vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
-const files = computed(() => {
-	return store.getters.files
-})
 
 const getFiles = async () => {
 	await store.dispatch('getFiles')
 }
+
+onMounted(async () => {
+	await getFiles()
+})
 
 // const selectFile = () => {
 // 	fileUpload.value.click()

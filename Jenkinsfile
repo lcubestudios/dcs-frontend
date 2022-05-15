@@ -10,17 +10,17 @@ pipeline{
         //Enviroment Varibles below:
         
         //ENV_NAME = 'value'
-	BASE_URL='/dcs-frontend/'
-	SITE_TITLE='Decentralized Cloud Storage | powered by LCube Studios'
+				VUE_APP_BASE_URL='/dcs-frontend/'
+				VUE_APP_SITE_TITLE='Decentralized Cloud Storage | powered by LCube Studios'
 
         //SECRET ENV 
-	//ENV_NAME = credentials('jenkins_env_id')
+				//ENV_NAME = credentials('jenkins_env_id')
 	
-	//WEB 3.0
+				//WEB 3.0
         IPFS_DEPLOY_CLOUDFLARE__API_KEY = credentials('cloudflare-api')
         IPFS_DEPLOY_CLOUDFLARE__API_EMAIL = credentials('cloudflare-email')
         IPFS_DEPLOY_CLOUDFLARE__ZONE='lcubestudios.io'
-	IPFS_DEPLOY_CLOUDFLARE__RECORD='dcs'
+				IPFS_DEPLOY_CLOUDFLARE__RECORD='dcs'
         
         //Do not modify
         APACHE_DIR = '/var/www/html'
