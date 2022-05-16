@@ -9,7 +9,7 @@
 				<div class="flex flex-row flex-nowrap">
 					<div class="flex flex-row flex-nowrap">
 						<div class="flex flex-row flex-nowrap items-center mr-5 text-right">
-							<h2 class="text-h6 title-text">Welcome!</h2>
+							<h2 class="text-h6 title-text">Welcome</h2>
 							<span class="hidden text-body-2 leading-none">
 								<span class="inline-block w-2 h-2 bg-secondary rounded-full mr-1"></span> Online
 							</span>
