@@ -80,7 +80,7 @@
 }
 
 /* Dark Mode */
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
 :root {
 	/* Theme */
 	/* shadows */
