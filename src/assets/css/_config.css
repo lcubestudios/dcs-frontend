@@ -99,8 +99,8 @@
 	--primary-button-textcolor: var(--color-white);
 	--secondary-button-bgcolor: var(--color-primary);
 	--secondary-button-textcolor: var(--color-white);
-	--disabled-button-bgcolor: var(--color-gray-002);
-	--disabled-button-textcolor: var(--color-white);
+	--disabled-button-bgcolor: var(--color-black-001);
+	--disabled-button-textcolor: var(--color-primary);
 	/* loader */
 	--loader-bg: var(--color-gray-002);
 	--loader-fg: var(--color-tertiary);
