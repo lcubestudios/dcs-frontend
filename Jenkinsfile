@@ -10,7 +10,7 @@ pipeline{
         //Enviroment Varibles below:
         
 				// CONFIG
-				VUE_APP_BASE_URL='/'
+				VUE_APP_BASE_URL='/dcs-frontend/'
 
 				// SEO
 				VUE_APP_SITE_TITLE='Decentralized Cloud Storage | powered by LCube Studios'
