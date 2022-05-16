@@ -1,18 +1,18 @@
 <template>
 	<div 
-		class="item flex flex-row gap-3 title-text py-8 border-b border-outershadow"
+		class="file-item list-table-row title-text py-8 border-b border-outershadow"
 		:class="{
 			'text-text-002': !isSelected,
 			'text-text-003': isSelected
 		}"
 	>
-		<div class="w-6/12">
+		<div class="list-table-data w-6/12">
 			<span @click="selectItem">{{ name }}</span>	
 		</div>
-		<div class="w-2/12 whitespace-nowrap">
+		<div class="list-table-data w-2/12 whitespace-nowrap">
 			<span @click="selectItem">{{ display_size }}</span>
 		</div>
-		<div class="w-4/12">
+		<div class="list-table-data w-4/12">
 			<span @click="selectItem">{{ dt_created }}</span>
 		</div>
 	</div>
@@ -41,13 +41,21 @@ const props = defineProps({
 		type: Number,
 		default: 0
 	},
+	// onClick: {
+	// 	type: Function,
+	// 	default: () => {}
+	// },
+	// isSelected: {
+	// 	type: Boolean,
+	// 	required: false
+	// },
 })
 
 const {
 	index,
 	name,
 	size,
-	created
+	created,
 } = toRefs(props)
 
 const isSelected = ref(false)
@@ -61,17 +69,18 @@ const dt_created = computed(() => {
 })
 
 const selectItem = () => {
+	// onClick.value(index.value, name.value)
 	isSelected.value = !isSelected.value
 	if (isSelected.value) {
 		store.dispatch('addSelectedFile', {
 			index: index.value,
-			name: name.value,
+			filename: name.value,
 		})
 	}
 	else {
 		store.dispatch('removeSelectedFile', {
 			index: index.value,
-			name: name.value,
+			filename: name.value,
 		})
 	}
 }
@@ -90,5 +99,5 @@ function formatBytes(bytes, decimals = 2) {
 </script>
 
 <style scoped>
-.item > div > span { cursor: pointer !important; }
+.file-item > div > span { cursor: pointer !important; }
 </style>

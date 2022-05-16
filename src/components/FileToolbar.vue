@@ -12,6 +12,7 @@
 			@click="deleteFiles"
 		/>
 		<UiButton
+			class="hidden"
 			:class="{ 
 				'disabled': !hasSelected
 			}"
@@ -86,12 +87,14 @@ const uploadFile = async () => {
 	inputUpload.value.value = ''
 }
 
-const deleteFiles = () => {
-	console.log(selectedFiles.value)
+const downloadFiles = async () => {
+	if (selectedFiles.value.length > 0) await store.dispatch('downloadFile', selectedFiles.value[0])
+	else console.log('no Files selected')
 }
 
-const downloadFiles = () => {
-	console.log(selectedFiles.value)
+const deleteFiles = async () => {
+	if (selectedFiles.value.length > 0) await store.dispatch('deleteFile', selectedFiles.value)
+	else console.log('no Files selected')
 }
 </script>
 

@@ -21,3 +21,13 @@
 }
 
 .title-text { color: var(--secondary-textcolor); }
+
+.list-table-row {
+	display: flex;
+	flex-flow: row nowrap;
+	gap: 0.75rem;
+}
+
+.list-table-header > .list-table-data {
+	padding-bottom: 0.75rem;
+}

@@ -9,9 +9,17 @@ pipeline{
         BUILD_COMMAND = 'yarn build'  // yarn generate
         //Enviroment Varibles below:
         
-        //ENV_NAME = 'value'
-				VUE_APP_BASE_URL='/dcs-frontend/'
+				// CONFIG
+				VUE_APP_BASE_URL='/'
+
+				// SEO
 				VUE_APP_SITE_TITLE='Decentralized Cloud Storage | powered by LCube Studios'
+
+				// API
+				VUE_APP_LIST_FILES_URL='https://api.lcubestudios.io/dev/dcs-api/ListFiles.py'
+				VUE_APP_UPLOAD_FILE_URL='https://api.lcubestudios.io/dev/dcs-api/Upload.py'
+				VUE_APP_DOWNLOAD_FILE_URL='https://api.lcubestudios.io/dev/dcs-api/Download.py'
+				VUE_APP_DELETE_FILE_URL='https://api.lcubestudios.io/dev/dcs-api/Delete.py'
 
         //SECRET ENV 
 				//ENV_NAME = credentials('jenkins_env_id')

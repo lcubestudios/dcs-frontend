@@ -9,7 +9,6 @@ import * as mdijs from '@mdi/js'
 
 import LoaderBasic from './components/loader/Basic.vue'
 import LoaderPercentage from './components/loader/Percentage.vue'
-import LoaderProgressBar from './components/loader/ProgressBar.vue'
 import UiButton from './components/ui/Button.vue'
 // import UiHeader from './components/ui/Header.vue'
 // import UiContent from './components/ui/Content.vue'
@@ -29,7 +28,6 @@ createApp(App)
 	})
 	.component('LoaderBasic', LoaderBasic)
 	.component('LoaderPercentage', LoaderPercentage)
-	.component('LoaderProgressBar', LoaderProgressBar)
 	.component('UiButton', UiButton)
 	// .component('UiHeader', UiHeader)
 	// .component('UiContent', UiContent)

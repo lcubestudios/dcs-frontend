@@ -72,8 +72,6 @@ onMounted(async () => {
 //   })
 //   fileReader.readAsDataURL(files[0])
 //   this.image = files[0]
-// 	console.log(fileReader.result)
-// 	console.log(filename)
 // }
 </script>
 
