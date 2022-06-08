@@ -12,7 +12,6 @@
 			@click="deleteFiles"
 		/>
 		<UiButton
-			class="hidden"
 			:class="{ 
 				'disabled': !hasSelected
 			}"
@@ -65,7 +64,7 @@ const selectedFiles = computed(() => {
 })
 
 const hasSelected = computed(() => {
-	return selectedFiles.value.length > 0
+	return selectedFiles.value.length === 1
 })
 
 const buttonBgColor = computed(() => {

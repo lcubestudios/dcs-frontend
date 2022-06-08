@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { toRefs, defineProps, computed, ref } from 'vue'
+import { toRefs, defineProps, computed } from 'vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
@@ -58,7 +58,15 @@ const {
 	created,
 } = toRefs(props)
 
-const isSelected = ref(false)
+const selectedFiles = computed(() => {
+	return store.getters.selectedFiles
+})
+
+const isSelected = computed(() => {
+	return selectedFiles.value.filter((item) => {
+			return item.index === index.value && item.filename === name.value
+		}).length > 0
+})
 
 const display_size = computed(() => {
 	return formatBytes(size.value)
@@ -68,21 +76,11 @@ const dt_created = computed(() => {
 	return new Date(created.value * 1000).toDateString()
 })
 
-const selectItem = () => {
-	// onClick.value(index.value, name.value)
-	isSelected.value = !isSelected.value
-	if (isSelected.value) {
-		store.dispatch('addSelectedFile', {
-			index: index.value,
-			filename: name.value,
-		})
-	}
-	else {
-		store.dispatch('removeSelectedFile', {
-			index: index.value,
-			filename: name.value,
-		})
-	}
+const selectItem = async () => {
+	await store.dispatch('selectFile', {
+		index: index.value,
+		filename: name.value,
+	})
 }
 
 function formatBytes(bytes, decimals = 2) {

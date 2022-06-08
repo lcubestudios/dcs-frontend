@@ -78,13 +78,26 @@ const actions = {
 	clearFiles({ commit }) {
 		commit('setFiles', [])
 	},
+	checkSelectedFile({ state }, data) {
+		const isFileSelected = state.selectedFiles.filter((item) => {
+			return item.index === data.index && item.filename === data.filename
+		}).length
+
+		return isFileSelected > 0
+	},
+	async selectFile({ dispatch }, data) {
+		const check = await dispatch('checkSelectedFile', data)
+
+		if (!check) await dispatch('addSelectedFile', data)
+		else await dispatch('removeSelectedFile', data)
+	},
 	addSelectedFile({ commit, state }, val) {
 		const list = [val,...state.selectedFiles]
 		commit('setSelectedFiles', list)
 	},
 	removeSelectedFile({ commit, state }, data) {
 		const list = state.selectedFiles.filter((item) => {
-			return item.index !== data.index && item.filename === data.filename
+			return item.index !== data.index && item.filename !== data.filename
 		})
 		commit('setSelectedFiles', list)
 	},
@@ -124,20 +137,35 @@ const actions = {
 			})
 			.catch((err) => console.log(err))
 	},
-	async downloadFile({ dispatch }, files) {
+	async downloadFile({ commit, dispatch }, file) {
+		commit('setFileListLoadTitle', 'Downloading')
+		commit('setFileListLoadMessage', 'A downloadable link for ' + file.filename + ' will open in a new tab shortly.')
+		commit('setFileListLoad', true)
 		await axios
-			.post(process.env.VUE_APP_DOWNLOAD_FILE_URL, JSON.stringify(files), {
+			.post(process.env.VUE_APP_DOWNLOAD_FILE_URL, JSON.stringify(file), {
 				headers: {
 					'Content-Type': 'multipart/form-data'
 				},
+				onUploadProgress: (progressEvent) => {
+					let progress = Math.round((progressEvent.loaded / progressEvent.total) * 100)
+
+					const max = Math.floor(Math.random() * (98 - 90 + 1) + 90)
+
+					if (progress > max) { progress = max }
+					
+					commit('setFileListLoadProgress', progress)
+				}
 			})
 			.then(async (res) => {
-				if (res.data?.status === 200) {
-					await dispatch('forceDownload', res.data)
-				}
-				else {
-					console.log(res)
-				}
+				await commit('setFileListLoadProgress', 100)
+	
+				setTimeout(async () => {
+					if (res.data?.status === 200) window.open(res.data?.url, '_blank');
+					else console.log(res)
+	
+					dispatch('clearSelectedFiles')
+					dispatch('clearFileListLoadSettings')
+				}, 100)
 			})
 			.catch((err) => console.log(err))
 	},
@@ -170,7 +198,8 @@ const actions = {
 						else console.log('error')
 		
 						await dispatch('loadFiles')
-		
+						
+						dispatch('clearSelectedFiles')
 						dispatch('clearFileListLoadSettings')
 					}, 100)
 				}
